@@ -1,3 +1,2 @@
 # Neural
-Neural
-first try to Neural Network
+First try to Neural Network
