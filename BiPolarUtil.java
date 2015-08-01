@@ -11,11 +11,12 @@ public class BiPolarUtil{
 			double dble = 2*bipolar -1;
 			return dble;
 		}
+		else{return -1;}
 	}
 	
 	public double boo2double(boolean boo){
 		double dble;
-		if(boo==true){dble==1;}
+		if(boo==true){dble=1;}
 		else{dble=-1;}
 		return dble;
 	}
