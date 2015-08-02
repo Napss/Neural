@@ -6,14 +6,16 @@
 import java.lang.Math;
 import java.util.ArrayList;
 
-public class HopfieldNetwork{
-	protected double[][] weightMatrix;
+public class HopfieldNetwork extends Simulation{
 
+	
 	public double[][] train(boolean[] pattern){
 		Matrix matrix = new Matrix();
 		MatrixMath matrixMath = new MatrixMath();
 		BiPolarUtil bip = new BiPolarUtil();
+		HopfieldNetwork hop = new HopfieldNetwork();
 		int l=pattern.length;
+		degre=degre+1;
 		double[][] vect = new double[1][l];
 		double[][] trans = new double[l][1];
 		double[][] res = new double[l][l];
@@ -28,38 +30,32 @@ public class HopfieldNetwork{
 		weightMatrix=res;
 		return res;
 	}
-	public double degre(){
-		double a = 0;
-		int row = weightMatrix.length;
-		int col = weightMatrix[0].length;
-		for(int r=0; r<row;r++){
-			for(int c=0; c<col;c++){
-				if(weightMatrix[r][c]!=0){a=weightMatrix[r][c];}				
-			}
-		}
-		return Math.abs(a);
-	}
+
 	public boolean test(boolean[] pattern){
 		Matrix matrix = new Matrix();
 		MatrixMath matrixMath = new MatrixMath();
 		BiPolarUtil bip = new BiPolarUtil();
 		double[][] pat = bip.boo2double(pattern);
 		double[][] mu=matrixMath.mult(pat,weightMatrix);
-		double k = degre();
 		int row = weightMatrix.length;
-		double[][] m = matrixMath.multiply(pat,row-k);
+		double[][] m = matrixMath.multiply(pat,row-degre);
+		m=matrixMath.sign(m);
+		mu=matrixMath.sign(mu);
 		return matrix.equals(m,mu);
 	}
-	public ArrayList<String> test(boolean[][] patternlist){
+	public ArrayList<ArrayList<Integer>> test(boolean[][] patternlist){
 		Matrix matrix = new Matrix();
 		MatrixMath matrixMath = new MatrixMath();
 		BiPolarUtil bip = new BiPolarUtil();
+		HopfieldNetwork hop = new HopfieldNetwork();
 		int row = patternlist.length;
 		int col = patternlist[0].length;
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<Integer> l = new ArrayList<Integer>();
+		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
 		for(int r=0; r<row;r++){
-			if(test(matrix.getRowBoo(patternlist,r))==true){list.add(Integer.toString(r+1));}
+			if(test(matrix.getRowBoo(patternlist,r))==true){l.add(r+1);}
 		}
+		list.add(l);
 		return list;
 	}
 	
