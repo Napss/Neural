@@ -7,7 +7,9 @@
 import java.util.Random;
 
 public class Simulation {
-
+	protected static double[][] weightMatrix;
+	protected static int degre;
+	
 	public boolean[][] generatePatterns(int size,int nb){
 	    Random rand = new Random();
 	    boolean[][] pats = new boolean[nb][size];
@@ -37,16 +39,23 @@ public class Simulation {
 		BiPolarUtil bip = new BiPolarUtil();
 		HopfieldNetwork hop = new HopfieldNetwork();
 		Simulation simu = new Simulation();
-		int size=4;
-		hop.weightMatrix = new double[size][size];
+		int size=7;
+		weightMatrix = new double[size][size];
+		degre=0;
 		boolean[] pattern = simu.generatePattern(size);
-		matrix.display(pattern);
+		boolean[] pattern2 = simu.generatePattern(size);
+		boolean[] pattern3 = simu.generatePattern(size);
 		System.out.println(" ");
 		boolean[][] patternlist = simu.generatePatterns(size,10);
-		matrix.display(patternlist);
+		//matrix.display(patternlist);
 		System.out.println(" ");
-		matrix.display(matrix.getRowBoo(patternlist,3));
+		matrix.display(pattern);
+		matrix.display(pattern2);
+		matrix.display(pattern3);
+		//matrix.display(matrix.getRowBoo(patternlist,3));
 		hop.train(pattern);
-		System.out.println(hop.test(patternlist));
+		hop.train(pattern2);
+		//matrix.display(weightMatrix);
+		System.out.println(hop.test(pattern3));
 	}
 }
