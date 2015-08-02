@@ -84,6 +84,19 @@ public class MatrixMath {
 		return transposed;
 	}
 	
+	public double[][] sign(double[][] matrix){
+		int row = matrix.length;
+		int col = matrix[0].length;
+		double[][] signed = new double[row][col];
+		for(int r=0; r<row;r++){
+			for(int c=0; c<col;c++){
+				if(matrix[r][c]!=0){
+						signed[r][c] = matrix[r][c]/Math.abs(matrix[r][c]);	
+				}
+			}
+		}
+		return signed;
+	}
 	public double[][] mult(double[][] a, double[][] b){
 		if(a.length == 0){return new double[0][0];}
 		if(a[0].length != b.length){return null;}
