@@ -4,13 +4,20 @@
 * @version 1.0
 */
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Simulation {
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Simulation implements ActionListener{
 	protected static double[][] weightMatrix;
 	protected static int degre;
 	protected static ArrayList<String> trainedPattern = new ArrayList<String>();
+	protected static JLabel myLabels[];
 
 	public boolean[][] generatePatterns(int size,int nb){
 	    Random rand = new Random();
@@ -35,23 +42,17 @@ public class Simulation {
 		}
 		return pat;
 	}
-	public static void main(String[] args) {
-		Matrix matrix = new Matrix();
-		MatrixMath matrixMath = new MatrixMath();
-		BiPolarUtil bip = new BiPolarUtil();
-		HopfieldNetwork hop = new HopfieldNetwork();
-		Simulation simu = new Simulation();
-		int size=7;
-		weightMatrix = new double[size][size];
-		degre=0;
-		boolean[] pattern = simu.generatePattern(size);
-		boolean[] pattern2 = simu.generatePattern(size);
-		boolean[] pattern3 = simu.generatePattern(size);
-		boolean[][] patternlist = simu.generatePatterns(size,1000);
-		System.out.println(" ");
-		hop.train(pattern);
-		hop.train(pattern2);
-		System.out.println(hop.test(patternlist));
 
+	public static void main(String[] args) {
+		int size=64;
+		weightMatrix = new double[size][size];
+		Grid grid = new Grid();
+		grid.frm();
+		//System.out.println(myLabels[0].getBackground());
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
