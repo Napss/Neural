@@ -5,6 +5,7 @@
 */
 
 import java.lang.Math;
+import java.util.ArrayList;
 
 public class Matrix{
 	
@@ -257,6 +258,14 @@ public class Matrix{
 				System.out.print(pat[r][c]);
 			}
 		}
+		System.out.println(" ");
+	}
+	public void display(ArrayList<String> list){
+		int size = list.size();
+		for(int i=0; i<size;i++){
+			System.out.println(" ");
+				System.out.print(list.get(i));
+			}
 		System.out.println(" ");
 	}
 }
