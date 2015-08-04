@@ -59,12 +59,22 @@ public class HopfieldNetwork extends Simulation{
 		BiPolarUtil bip = new BiPolarUtil();
 		double[][] pat = bip.boo2double(pattern);
 		double[][] mu=matrixMath.mult(pat,weightMatrix);
-		int row = weightMatrix.length;
-		double[][] m = matrixMath.multiply(pat,row-degre);
-		m=matrixMath.sign(m);
+		double[][] m=matrixMath.sign(pat);
 		mu=matrixMath.sign(mu);
+		matrix.display(mu);
 		return matrix.equals(m,mu);
 	}
+	public double[][] testreturn(boolean[] pattern){
+		Matrix matrix = new Matrix();
+		MatrixMath matrixMath = new MatrixMath();
+		BiPolarUtil bip = new BiPolarUtil();
+		double[][] pat = bip.boo2double(pattern);
+		double[][] mu=matrixMath.mult(pat,weightMatrix);
+		double[][] m=matrixMath.sign(pat);
+		mu=matrixMath.sign(mu);
+		return mu;
+	}
+
 	public ArrayList<ArrayList<String>> test(boolean[][] patternlist){
 		Matrix matrix = new Matrix();
 		MatrixMath matrixMath = new MatrixMath();
