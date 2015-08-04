@@ -4,12 +4,14 @@
 * @version 1.0
 */
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Simulation {
 	protected static double[][] weightMatrix;
 	protected static int degre;
-	
+	protected static ArrayList<String> trainedPattern = new ArrayList<String>();
+
 	public boolean[][] generatePatterns(int size,int nb){
 	    Random rand = new Random();
 	    boolean[][] pats = new boolean[nb][size];
@@ -45,17 +47,11 @@ public class Simulation {
 		boolean[] pattern = simu.generatePattern(size);
 		boolean[] pattern2 = simu.generatePattern(size);
 		boolean[] pattern3 = simu.generatePattern(size);
+		boolean[][] patternlist = simu.generatePatterns(size,1000);
 		System.out.println(" ");
-		boolean[][] patternlist = simu.generatePatterns(size,10);
-		//matrix.display(patternlist);
-		System.out.println(" ");
-		matrix.display(pattern);
-		matrix.display(pattern2);
-		matrix.display(pattern3);
-		//matrix.display(matrix.getRowBoo(patternlist,3));
 		hop.train(pattern);
 		hop.train(pattern2);
-		//matrix.display(weightMatrix);
-		System.out.println(hop.test(pattern3));
+		System.out.println(hop.test(patternlist));
+
 	}
 }
